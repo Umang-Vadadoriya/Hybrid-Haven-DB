@@ -9,3 +9,7 @@
 ### Install the Database Management System (SSMS)
 
 - Installed the SQL SERVER MANAGEMENT STUDIO on local machine to work with HybridHavenDB Database.
+
+### Diagram
+
+![image](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160090850/7976218a-6996-498e-9e71-9a980f4b7b1d)
