@@ -1,5 +1,11 @@
 # Hybrid-Haven-DB
 
-### Steps to Set Up the Database
+### Create an AWS RDS Database
 
-1.  Install the Database Management System (SSMS)
+- Sign in to the AWS Management Console with our created BBD Email
+- For AWS login visit (https://aws.amazon.com/console)
+
+
+### Install the Database Management System (SSMS)
+
+- Installed the SQL SERVER MANAGEMENT STUDIO on local machine to work with HybridHavenDB Database.
