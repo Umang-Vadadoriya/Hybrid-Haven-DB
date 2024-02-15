@@ -1,6 +1,6 @@
 CREATE TABLE [Employee] (
   [EmployeeId] integer IDENTITY(1,1) PRIMARY KEY,
-  [EmployeeName] integer,
+  [EmployeeName] varchar(30),
   [EmployeeEmail] varchar(30)
 )
 GO
