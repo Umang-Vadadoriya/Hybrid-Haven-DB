@@ -46,6 +46,8 @@ For reference visit https://docs.liquibase.com/start/install/liquibase-windows.h
 
 3.  Run `terraform init` to initialize the Terraform configuration.
 
+    ![1](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/e6c546b5-7014-4b54-b657-065c8b03baec)
+
 4. Run `terraform validate` to validates the configuration files in a directory, referring only to the configuration
 
 5. Run `terraform plan` to review the planned infrastructure changes.
