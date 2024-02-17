@@ -50,8 +50,12 @@ For reference visit https://docs.liquibase.com/start/install/liquibase-windows.h
 
 4. Run `terraform validate` to validates the configuration files in a directory, referring only to the configuration
 
+  ![2](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/85e5bfb7-ba80-4236-8b36-384cedbf9c5b)
+
 5. Run `terraform plan` to review the planned infrastructure changes.
 
+![4](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/2c6b8670-b6c8-428f-8b9a-2dc23f4403b5)
+ 
 6. If everything looks correct, run `terraform apply` to deploy the infrastructure on AWS.
 
 ```
