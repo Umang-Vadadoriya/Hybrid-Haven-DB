@@ -5,5 +5,5 @@ jobs:
   test-output:
     runs-on: ubuntu-latest
     steps:
-    - name: Test Output
+    -name: Test Output
       run: echo "Here is a test"
