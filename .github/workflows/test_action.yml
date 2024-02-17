@@ -1,9 +1,0 @@
-name: test_action
-run-name: Testing Github Actions
-on: [push]
-jobs:
-  test-output:
-    runs-on: ubuntu-latest
-    steps:
-    -name: Test Output
-      run: echo "Here Is A Test"
