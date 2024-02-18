@@ -196,3 +196,50 @@ VALUES
 (4,1,'2024-02-15');
 GO
 -- rollback DELETE FROM DeskBooking;
+
+
+--  >>>>>>>>>>>>>>
+--  Extras
+--  <<<<<<<<<<<<<<
+
+--changeset HybridHavenMigrate:22 labels:CreatingPROC
+CREATE OR ALTER PROC PROC_InsertEmployee
+@EmployeeName VARCHAR(30),
+@EmployeeEmail VARCHAR(20)
+AS
+	BEGIN TRY
+		BEGIN TRAN TransInsert;
+			INSERT INTO Employee(EmployeeName,EmployeeEmail)
+			VALUES ( @EmployeeName,@EmployeeEmail);
+		COMMIT;
+	END TRY
+	BEGIN CATCH
+		SELECT ERROR_MESSAGE();
+		ROLLBACK;
+	END CATCH
+GO
+--rollback DROP PROC IF EXISTS PROC_InsertEmployee
+
+--changeset HybridHavenMigrate:23 labels:CreatingFunction
+CREATE OR ALTER FUNCTION FUNC_TomorrowDate
+RETURNS DATE
+AS
+BEIGN
+	DECLARE @tomDate DATE
+	SELECT @tomDate = CAST(GETDATE()+1 AS DATE);
+	RETURN @tomDate
+END
+GO
+--rollback DROP FUNCTION IF EXISTS FUNC_TomorrowDate;
+
+--changeset HybridHavenMigrate:24 labels:CreatingView
+CREATE OR ALTER VIEW VIEW_TommEmployees
+AS
+SELECT Employeename 
+FROM Employee 
+WHERE EmployeeId IN 
+    (SELECT EmployeeId 
+    FROM DeskBooking 
+    WHERE DeskBookingDate = dbo.FUNC_TomorrowDate());
+GO
+--rollback DROP VIEW IF EXISTS VIEW_TommEmployees;
