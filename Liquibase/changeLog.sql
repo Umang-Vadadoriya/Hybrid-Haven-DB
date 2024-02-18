@@ -9,3 +9,12 @@ CREATE TABLE [Employee] (
 GO
 -- rollback DROP TABLE Employee;
 
+--changeset HybridHavenMigrate:2 labels:CreatingTableDeskBooking
+CREATE TABLE [DeskBooking] (
+  [DeskBookingId] integer IDENTITY(1,1) PRIMARY KEY,
+  [EmployeeId] integer NOT NULL,
+  [NeighbourId] integer NOT NULL,
+  [DeskBookingDate] date NOT NULL
+)
+GO
+-- rollback DROP TABLE DeskBooking;
