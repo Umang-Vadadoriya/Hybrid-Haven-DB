@@ -1,0 +1,37 @@
+name: liquibase
+run-name: Setting up the Liquibase database
+on:
+  pull_request:
+    types: [closed]
+    paths: 'Liqubase/*'
+
+jobs:
+  test-output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Liquibase Migrate
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'  
+        uses: liquibase-github-actions/update@v4.26.0
+        with:
+          # string
+          # Required
+          changelogFile: "Liquibase/changeLog.sql"
+          
+          # The JDBC database connection URL
+          # string
+          # Required
+          url: ${{ secrets.URL }}
+          
+          # Password to use to connect to the database
+          # string
+          # Optional
+          password: ${{ secrets.PASSWORD }}
+          
+          # Username to use to connect to the database
+          # string
+          # Optional
+          username: ${{ secrets.USERNAME }}
+          # The root changelog
