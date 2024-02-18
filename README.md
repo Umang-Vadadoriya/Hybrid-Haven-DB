@@ -64,5 +64,3 @@ terraform apply
 ### Diagram
 
 ![image](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/a28c0537-bd60-44eb-ac78-bc06547e8005)
-
-ABC
