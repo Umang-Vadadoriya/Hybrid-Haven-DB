@@ -1,8 +1,9 @@
 name: liquibase
 run-name: Setting up the Liquibase database
 on:
-  pull_request:
-    types: [closed]
+  push:
+    branches: 
+        - main
     paths: 'Liqubase/*'
 
 jobs:
