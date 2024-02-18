@@ -1,5 +1,4 @@
 name: Liquibase Action
-run-name: Setting up the Liquibase database
 on:
   push:
     branches: 
