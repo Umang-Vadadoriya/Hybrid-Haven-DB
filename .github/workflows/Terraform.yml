@@ -100,3 +100,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'        
         run: terraform apply -auto-approve -var "DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}" -var "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" -input=false
+    
