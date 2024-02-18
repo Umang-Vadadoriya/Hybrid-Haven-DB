@@ -14,7 +14,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Liquibase Migrate
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'  
         uses: liquibase-github-actions/update@v4.26.0
         with:
           # string
