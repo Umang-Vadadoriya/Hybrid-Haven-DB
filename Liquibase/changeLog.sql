@@ -18,3 +18,13 @@ CREATE TABLE [DeskBooking] (
 )
 GO
 -- rollback DROP TABLE DeskBooking;
+
+--changeset HybridHavenMigrate:3 labels:CreatingTableVacation
+CREATE TABLE [Vacation] (
+  [VacationId] integer IDENTITY(1,1) PRIMARY KEY,
+  [EmployeeId] integer NOT NULL,
+  [VacationStartDate] date NOT NULL,
+  [VacationEndDate] date NOT NULL
+)
+GO
+-- rollback DROP TABLE Vacation;
