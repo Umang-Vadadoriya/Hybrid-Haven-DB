@@ -1,4 +1,4 @@
-create or alter function TomorrowDate
+create or alter function FUNC_TomorrowDate
 returns date
 as
 Begin
@@ -7,4 +7,4 @@ Begin
 	return @tomDate
 End
 
---select dbo.TomorrowDate();
+--select dbo.FUNC_TomorrowDate();
