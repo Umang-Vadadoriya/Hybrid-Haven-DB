@@ -1,89 +1,98 @@
+-- Table Creation
+
 CREATE TABLE [Employee] (
   [EmployeeId] integer IDENTITY(1,1) PRIMARY KEY,
-  [EmployeeName] varchar(30),
-  [EmployeeEmail] varchar(30)
+  [EmployeeName] varchar(50) NOT NULL,
+  [EmployeeEmail] varchar(50) NOT NULL
 )
 GO
 
 CREATE TABLE [DeskBooking] (
-  [DeskBookingId]  integer IDENTITY(1,1) PRIMARY KEY,
-  [EmployeeId] integer,
-  [NeighbourId] integer,
-  [DeskBookingDate] date
+  [DeskBookingId] integer IDENTITY(1,1) PRIMARY KEY,
+  [EmployeeId] integer NOT NULL,
+  [NeighbourId] integer NOT NULL,
+  [DeskBookingDate] date NOT NULL
 )
 GO
 
 CREATE TABLE [Vacation] (
   [VacationId] integer IDENTITY(1,1) PRIMARY KEY,
-  [EmployeeId] integer,
-  [VacationStartDate] date,
-  [VacationEndDate] date
+  [EmployeeId] integer NOT NULL,
+  [VacationStartDate] date NOT NULL,
+  [VacationEndDate] date NOT NULL
 )
 GO
 
 CREATE TABLE [Events] (
   [EventID] integer IDENTITY(1,1) PRIMARY KEY,
-  [EventName] varchar(20),
-  [EventDescription] varchar(max),
-  [EventDate] datetime
+  [EventName] varchar(50) NOT NULL,
+  [EventDescription] varchar(300),
+  [EventDate] datetime NOT NULL
 )
 GO
 
 CREATE TABLE [NeighbourHood] (
   [NeighbourId] integer IDENTITY(1,1) PRIMARY KEY,
-  [NeighbourName] varchar(20),
-  [NeighbourNumberOfDesk] integer
-)
-GO
-
-CREATE TABLE [Status] (
-  [StatusId] integer IDENTITY(1,1) PRIMARY KEY,
-  [StatusName] varchar(20)
-)
-GO
-
-CREATE TABLE [Gathering] (
-  [GatheringId] integer IDENTITY(1,1) PRIMARY KEY,
-  [GatheringName] varchar(20),
-  [GatheringDateTime] datetime,
-  [GatheringCreatedBy] integer
-)
-GO
-
-CREATE TABLE [GatheringEmployees] (
-  [GatheringId] integer,
-  [EmployeeId] integer
-)
-GO
-
-CREATE TABLE [EventsEmployees] (
-  [EventId] integer,
-  [EmployeeId] integer
+  [NeighbourName] varchar(30) NOT NULL,
+  [NeighbourNumberOfDesk] integer NOT NULL
 )
 GO
 
 CREATE TABLE [EmployeeReportsTo] (
-  [EmployeeId] integer,
-  [EmployeeReportsTo] integer
+  [EmployeeId] integer NOT NULL,
+  [EmpReportsTo] integer NOT NULL
 )
 GO
 
-ALTER TABLE [Gathering] ADD FOREIGN KEY ([GatheringCreatedBy]) REFERENCES [Employee] ([EmployeeId])
+CREATE TABLE [TodayStatus] (
+  [StatusId] integer IDENTITY(1,1) PRIMARY KEY,
+  [StatusName] varchar(20) NOT NULL,
+  [EmployeeId] integer NOT NULL
+)
 GO
 
-ALTER TABLE [EmployeeReportsTo] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
+CREATE TABLE [EventsEmployees] (
+  [EventId] integer NOT NULL,
+  [EmployeeId] integer NOT NULL
+)
 GO
 
-ALTER TABLE [DeskBooking] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
+ALTER TABLE [EmployeeReportsTo] ADD CONSTRAINT FK_EmpRep_Empid_Empid 
+FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId]) 
+ON UPDATE CASCADE
 GO
 
-ALTER TABLE [Vacation] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
-GO
-
-ALTER TABLE [EventsEmployees] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
-GO
-
-ALTER TABLE [EventsEmployees] ADD FOREIGN KEY ([EventId]) REFERENCES [Events] ([EventID])
+ALTER TABLE [EmployeeReportsTo] ADD CONSTRAINT FK_EmpRep_Empr_Empid 
+FOREIGN KEY ([EmpReportsTo]) REFERENCES [Employee] ([EmployeeId])
 GO
 
 
+ALTER TABLE [DeskBooking] ADD CONSTRAINT FK_Deskbook_Empid_Empid 
+FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
+ON UPDATE CASCADE
+GO
+
+ALTER TABLE [Vacation] ADD CONSTRAINT FK_Vacation_Empid_Empid 
+FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
+ON UPDATE CASCADE
+GO
+
+ALTER TABLE [EventsEmployees] ADD CONSTRAINT FK_EventsEmp_Empid_Empid 
+FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
+ON UPDATE CASCADE
+GO
+
+ALTER TABLE [EventsEmployees] ADD CONSTRAINT FK_EventsEmp_Eventid_Eventid 
+FOREIGN KEY ([EventId]) REFERENCES [Events] ([EventID])
+ON UPDATE CASCADE
+GO
+
+ALTER TABLE [TodayStatus] ADD CONSTRAINT FK_TodayStatus_Empid_Empid 
+FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
+ON UPDATE CASCADE
+GO
+
+ALTER TABLE [DeskBooking] ADD CONSTRAINT FK_NeighbourHood_Neighid_Neighid 
+FOREIGN KEY ([NeighbourId]) REFERENCES [NeighbourHood] ([NeighbourId])
+ON UPDATE CASCADE
+GO
