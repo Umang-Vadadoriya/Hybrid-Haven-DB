@@ -61,3 +61,13 @@ VALUES
 (4,2,'2024-02-13'),
 (4,3,'2024-02-14'),
 (4,1,'2024-02-15');
+
+-- TodayStatus Table
+
+INSERT INTO TodayStatus(StatusName,EmployeeId) 
+VALUES 
+('Home',1),
+('Office',2),
+('Vacation',3),
+('Office',5),
+('Office',6);
