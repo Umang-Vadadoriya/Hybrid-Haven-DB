@@ -12,18 +12,6 @@
 -- (5,2),
 -- (6,2);
 
--- INSERT INTO Gathering (GatheringName,GatheringDateTime,GatheringCreatedBy)
--- VALUES 
--- ('Cricket','2024-01-12 12:00:00',2),
--- ('Tracking','2023-06-11 12:00:00',1);
-
--- INSERT INTO GatheringEmployees (GatheringId,EmployeeId)
--- VALUES 
--- (1,2),
--- (1,4),
--- (2,3),
--- (2,5);
-
 -- INSERT INTO Events (EventName,EventDescription,EventDate)
 -- VALUES 
 -- ('Lunch','At Absolute Barbeque','2024-01-12 12:00:00'),
