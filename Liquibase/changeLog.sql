@@ -112,11 +112,24 @@ ON UPDATE CASCADE
 GO
 -- rollback ALTER TABLE DeskBooking DROP CONSTRAINT FK_NeighbourHood_Neighid_Neighid;
 
+
 --  >>>>>>>>>>>>>>
 --  Insert Queries
 --  <<<<<<<<<<<<<<
 
---changeset HybridHavenMigrate:15 labels:InsertingDataVacation
+--changeset HybridHavenMigrate:15 labels:InsertingDataEmployee
+INSERT INTO Employee (EmployeeName,EmployeeEmail)
+VALUES 
+('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za'),
+('Krunal Rana', 'krunal.rana@bbd.co.za'),
+('Dinesh Saw', 'dinesh.saw@bbd.co.za'),
+('Nishant Taletiya', 'nishant.taletiya@bbd.co.za'),
+('Parth Vaghela', 'parth.vaghela@bbd.co.za'),
+('Vinayak Tiwari', 'vinayak.tiwari@bbd.co.za');
+GO
+-- rollback DELETE FROM Employee;
+
+--changeset HybridHavenMigrate:16 labels:InsertingDataVacation
 INSERT INTO Vacation (EmployeeId,VacationStartDate,VacationEndDate)
 VALUES 
 (5,'2023-02-15','2023-02-17'),
@@ -126,7 +139,7 @@ VALUES
 GO
 -- rollback DELETE FROM Vacation;
 
---changeset HybridHavenMigrate:16 labels:InsertingDataEmployeeReportsTo
+--changeset HybridHavenMigrate:17 labels:InsertingDataEmployeeReportsTo
 INSERT INTO EmployeeReportsTo (EmployeeId,EmpReportsTo)
 VALUES 
 (3,1),
@@ -136,7 +149,7 @@ VALUES
 GO
 -- rollback DELETE FROM EmployeeReportsTo;
 
---changeset HybridHavenMigrate:17 labels:InsertingDataEvents
+--changeset HybridHavenMigrate:18 labels:InsertingDataEvents
 INSERT INTO Events (EventName,EventDescription,EventDate)
 VALUES 
 ('Lunch','At Absolute Barbeque','2024-01-12 12:00:00'),
@@ -144,7 +157,7 @@ VALUES
 GO
 -- rollback DELETE FROM Events;
 
---changeset HybridHavenMigrate:18 labels:InsertingDataEventsEmployees
+--changeset HybridHavenMigrate:19 labels:InsertingDataEventsEmployees
 INSERT INTO EventsEmployees (EventID,EmployeeId)
 VALUES 
 (1,1),
@@ -160,7 +173,7 @@ VALUES
 GO
 -- rollback DELETE FROM EventsEmployees;
 
---changeset HybridHavenMigrate:19 labels:InsertingDataEventsNeighbourHood
+--changeset HybridHavenMigrate:20 labels:InsertingDataEventsNeighbourHood
 INSERT INTO NeighbourHood (NeighbourName,NeighbourNumberOfDesk)
 VALUES 
 ('Meeting',20),
@@ -169,7 +182,7 @@ VALUES
 GO
 -- rollback DELETE FROM NeighbourHood;
 
---changeset HybridHavenMigrate:20 labels:InsertingDataEventsDeskBooking
+--changeset HybridHavenMigrate:21 labels:InsertingDataEventsDeskBooking
 INSERT INTO DeskBooking (EmployeeId,NeighbourId,DeskBookingDate)
 VALUES 
 (1,2,'2024-02-13'),
