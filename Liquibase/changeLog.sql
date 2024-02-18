@@ -221,7 +221,7 @@ GO
 --rollback DROP PROC IF EXISTS PROC_InsertEmployee
 
 --changeset HybridHavenMigrate:23 labels:CreatingFunction
-CREATE OR ALTER FUNCTION FUNC_TomorrowDate
+CREATE OR ALTER FUNCTION FUNC_TomorrowDate()
 RETURNS DATE
 AS
 BEIGN
