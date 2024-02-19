@@ -57,10 +57,11 @@ For reference visit https://docs.liquibase.com/start/install/liquibase-windows.h
 ![4](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/2c6b8670-b6c8-428f-8b9a-2dc23f4403b5)
  
 6. If everything looks correct, run `terraform apply` to deploy the infrastructure on AWS.
-
 ```
 terraform apply
 ```
 ### Diagram
 
-![image](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/a28c0537-bd60-44eb-ac78-bc06547e8005)
+![image](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/0add59f4-a347-4fd3-8e35-de5b33ded2ba)
+
+- Confluence visit https://bbd-krunalrana.atlassian.net/wiki/spaces/~712020ab828087e0fa428abaed8efea3b2c3a1/overview?homepageId=65684
