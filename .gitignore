@@ -33,7 +33,46 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+#   Liquibase Ignore
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+.project
+.settings
+*nb-configuration.xml
+.classpath
+/.idea/workspace.xml
+/out
+/bin
+**/liquibase.integrationtest.local.properties
+**/liquibase.test.local.properties
+**/liquibase.local.properties
+**/liquibase.sdk.local.yaml
+**/liquibase.sdk.local.yml
+derby.log
+.idea
+*.iml
+.DS_Store
+/tmp
+/.metadata/
 
+atlassian-ide-plugin.xml
+_issues
+/liquibase-standard/tmp
+/liquibase-integration-tests/tmp
+/liquibase-integration-tests/liquibase
+/liquibase-integration-tests/liquibase.trace.db
+/liquibase-integration-tests/liquibase.mv.db
+/liquibase-integration-tests/diffToChangeLog_h2.log
+jacoco.exec
+**/original-pom.xml
+original-pom.xml
+**/logback-test.xml
+**/*.swp
+**/dependency-reduced-pom.xml
 
 # User Defined
 .github/workflows/test_action.yml
