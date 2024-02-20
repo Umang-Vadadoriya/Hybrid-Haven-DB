@@ -5,7 +5,7 @@ CREATE TABLE [Employee] (
   [EmployeeId] integer IDENTITY(1,1) PRIMARY KEY,
   [EmployeeName] varchar(50) NOT NULL,
   [EmployeeEmail] varchar(50) NOT NULL,
-  [EmployeeContact] varchar(12) NOT NULL,
+  [EmployeeContact] varchar(13) NOT NULL,
   [EmployeeReportsTo] integer NOT NULL
 )
 GO
