@@ -4,7 +4,8 @@
 CREATE TABLE [Employee] (
   [EmployeeId] integer IDENTITY(1,1) PRIMARY KEY,
   [EmployeeName] varchar(50) NOT NULL,
-  [EmployeeEmail] varchar(50) NOT NULL
+  [EmployeeEmail] varchar(50) NOT NULL,
+  [EmpReportsTo] integer NOT NULL
 )
 GO
 -- rollback DROP TABLE Employee;
@@ -48,14 +49,6 @@ CREATE TABLE [NeighbourHood] (
 GO
 -- rollback DROP TABLE NeighbourHood;
 
---changeset HybridHavenMigrate:6 labels:CreatingTableEmployeeReportsTo
-CREATE TABLE [EmployeeReportsTo] (
-  [EmployeeId] integer NOT NULL,
-  [EmpReportsTo] integer NOT NULL
-)
-GO
--- rollback DROP TABLE EmployeeReportsTo;
-
 --changeset HybridHavenMigrate:7 labels:CreatingTableEventsEmployees
 CREATE TABLE [EventsEmployees] (
   [EventId] integer NOT NULL,
@@ -70,12 +63,6 @@ FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
 ON UPDATE CASCADE
 GO
 -- rollback ALTER TABLE EmployeeReportsTo DROP CONSTRAINT FK_EmpRep_Empid_Empid;
-
---changeset HybridHavenMigrate:9 labels:CreatingFK_EmpRep_Empr_Empid
-ALTER TABLE [EmployeeReportsTo] ADD CONSTRAINT FK_EmpRep_Empr_Empid 
-FOREIGN KEY ([EmpReportsTo]) REFERENCES [Employee] ([EmployeeId])
-GO
--- rollback ALTER TABLE EmployeeReportsTo DROP CONSTRAINT FK_EmpRep_Empr_Empid;
 
 --changeset HybridHavenMigrate:10 labels:CreatingFK_Deskbook_Empid_Empid
 ALTER TABLE [DeskBooking] ADD CONSTRAINT FK_Deskbook_Empid_Empid 
@@ -118,14 +105,14 @@ GO
 --  <<<<<<<<<<<<<<
 
 --changeset HybridHavenMigrate:15 labels:InsertingDataEmployee
-INSERT INTO Employee (EmployeeName,EmployeeEmail)
+INSERT INTO Employee (EmployeeName,EmployeeEmail,EmployeeReportsTo)
 VALUES 
-('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za'),
-('Krunal Rana', 'krunal.rana@bbd.co.za'),
-('Dinesh Saw', 'dinesh.saw@bbd.co.za'),
-('Nishant Taletiya', 'nishant.taletiya@bbd.co.za'),
-('Parth Vaghela', 'parth.vaghela@bbd.co.za'),
-('Vinayak Tiwari', 'vinayak.tiwari@bbd.co.za');
+('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za',0),
+('Krunal Rana', 'krunal.rana@bbd.co.za',1),
+('Dinesh Saw', 'dinesh.saw@bbd.co.za',1),
+('Nishant Taletiya', 'nishant.taletiya@bbd.co.za',2),
+('Parth Vaghela', 'parth.vaghela@bbd.co.za',2),
+('Vinayak Tiwari', 'vinayak.tiwari@bbd.co.za',5);
 GO
 -- rollback DELETE FROM Employee;
 
