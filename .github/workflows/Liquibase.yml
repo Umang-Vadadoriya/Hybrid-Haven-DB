@@ -10,7 +10,7 @@ on:
     paths: 'Liquibase/*'
 
 jobs:
-  test-output:
+  Liquibase-Operations:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
