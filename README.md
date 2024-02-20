@@ -62,6 +62,6 @@ terraform apply
 ```
 ### Diagram
 
-![ERD](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160090850/4cf77417-7166-4f03-9867-d464d845ddda)
+![ERD](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160090850/0c284f3e-7e95-4291-a66c-389288dc3b92)
 
 - Confluence [Visit](https://bbd-krunalrana.atlassian.net/wiki/spaces/~712020ab828087e0fa428abaed8efea3b2c3a1/overview?homepageId=65684)

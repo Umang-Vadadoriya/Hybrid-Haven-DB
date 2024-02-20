@@ -2,6 +2,7 @@ Table "Employee" {
   "EmployeeId" integer [pk]
   "EmployeeName" varchar2(50) [not null]
   "EmployeeEmail" varchar2(50) [not null]
+  "EmployeeContact" varchar2(12) [not null]
   "EmpReportsTo" integer [not null]
 }
 
