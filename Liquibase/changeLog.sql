@@ -50,7 +50,7 @@ CREATE TABLE [NeighbourHood] (
 GO
 -- rollback DROP TABLE NeighbourHood;
 
---changeset HybridHavenMigrate:7 labels:CreatingTableEventsEmployees
+--changeset HybridHavenMigrate:6 labels:CreatingTableEventsEmployees
 CREATE TABLE [EventsEmployees] (
   [EventId] integer NOT NULL,
   [EmployeeId] integer NOT NULL
@@ -58,42 +58,35 @@ CREATE TABLE [EventsEmployees] (
 GO
 -- rollback DROP TABLE EventsEmployees;
 
---changeset HybridHavenMigrate:8 labels:CreatingFK_EmpRep_Empid_Empid
-ALTER TABLE [EmployeeReportsTo] ADD CONSTRAINT FK_EmpRep_Empid_Empid 
-FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId]) 
-ON UPDATE CASCADE
-GO
--- rollback ALTER TABLE EmployeeReportsTo DROP CONSTRAINT FK_EmpRep_Empid_Empid;
-
---changeset HybridHavenMigrate:10 labels:CreatingFK_Deskbook_Empid_Empid
+--changeset HybridHavenMigrate:7 labels:CreatingFK_Deskbook_Empid_Empid
 ALTER TABLE [DeskBooking] ADD CONSTRAINT FK_Deskbook_Empid_Empid 
 FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
 ON UPDATE CASCADE
 GO
 -- rollback ALTER TABLE DeskBooking DROP CONSTRAINT FK_Deskbook_Empid_Empid;
 
---changeset HybridHavenMigrate:11 labels:CreatingFK_Vacation_Empid_Empid
+--changeset HybridHavenMigrate:8 labels:CreatingFK_Vacation_Empid_Empid
 ALTER TABLE [Vacation] ADD CONSTRAINT FK_Vacation_Empid_Empid 
 FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
 ON UPDATE CASCADE
 GO
 -- rollback ALTER TABLE Vacation DROP CONSTRAINT FK_Vacation_Empid_Empid;
 
---changeset HybridHavenMigrate:12 labels:CreatingFK_EventsEmp_Empid_Empid
+--changeset HybridHavenMigrate:9 labels:CreatingFK_EventsEmp_Empid_Empid
 ALTER TABLE [EventsEmployees] ADD CONSTRAINT FK_EventsEmp_Empid_Empid 
 FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
 ON UPDATE CASCADE
 GO
 -- rollback ALTER TABLE EventsEmployees DROP CONSTRAINT FK_EventsEmp_Empid_Empid;
 
---changeset HybridHavenMigrate:13 labels:CreatingFK_EventsEmp_Eventid_Eventid
+--changeset HybridHavenMigrate:10 labels:CreatingFK_EventsEmp_Eventid_Eventid
 ALTER TABLE [EventsEmployees] ADD CONSTRAINT FK_EventsEmp_Eventid_Eventid 
 FOREIGN KEY ([EventId]) REFERENCES [Events] ([EventID])
 ON UPDATE CASCADE
 GO
 -- rollback ALTER TABLE EventsEmployees DROP CONSTRAINT FK_EventsEmp_Eventid_Eventid;
 
---changeset HybridHavenMigrate:14 labels:CreatingFK_NeighbourHood_Neighid_Neighid
+--changeset HybridHavenMigrate:11 labels:CreatingFK_NeighbourHood_Neighid_Neighid
 ALTER TABLE [DeskBooking] ADD CONSTRAINT FK_NeighbourHood_Neighid_Neighid 
 FOREIGN KEY ([NeighbourId]) REFERENCES [NeighbourHood] ([NeighbourId])
 ON UPDATE CASCADE
@@ -105,7 +98,7 @@ GO
 --  Insert Queries
 --  <<<<<<<<<<<<<<
 
---changeset HybridHavenMigrate:15 labels:InsertingDataEmployee
+--changeset HybridHavenMigrate:12 labels:InsertingDataEmployee
 INSERT INTO Employee (EmployeeName,EmployeeEmail,EmployeeContact,EmployeeReportsTo)
 VALUES 
 ('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za','9645034569',0),
@@ -117,7 +110,7 @@ VALUES
 GO
 -- rollback DELETE FROM Employee;
 
---changeset HybridHavenMigrate:16 labels:InsertingDataVacation
+--changeset HybridHavenMigrate:13 labels:InsertingDataVacation
 INSERT INTO Vacation (EmployeeId,VacationStartDate,VacationEndDate)
 VALUES 
 (5,'2023-02-15','2023-02-17'),
@@ -127,7 +120,7 @@ VALUES
 GO
 -- rollback DELETE FROM Vacation;
 
---changeset HybridHavenMigrate:17 labels:InsertingDataEmployeeReportsTo
+--changeset HybridHavenMigrate:14 labels:InsertingDataEmployeeReportsTo
 INSERT INTO EmployeeReportsTo (EmployeeId,EmpReportsTo)
 VALUES 
 (3,1),
@@ -137,7 +130,7 @@ VALUES
 GO
 -- rollback DELETE FROM EmployeeReportsTo;
 
---changeset HybridHavenMigrate:18 labels:InsertingDataEvents
+--changeset HybridHavenMigrate:15 labels:InsertingDataEvents
 INSERT INTO Events (EventName,EventDescription,EventDate)
 VALUES 
 ('Lunch','At Absolute Barbeque','2024-01-12 12:00:00'),
@@ -145,7 +138,7 @@ VALUES
 GO
 -- rollback DELETE FROM Events;
 
---changeset HybridHavenMigrate:19 labels:InsertingDataEventsEmployees
+--changeset HybridHavenMigrate:16 labels:InsertingDataEventsEmployees
 INSERT INTO EventsEmployees (EventID,EmployeeId)
 VALUES 
 (1,1),
@@ -161,7 +154,7 @@ VALUES
 GO
 -- rollback DELETE FROM EventsEmployees;
 
---changeset HybridHavenMigrate:20 labels:InsertingDataEventsNeighbourHood
+--changeset HybridHavenMigrate:17 labels:InsertingDataEventsNeighbourHood
 INSERT INTO NeighbourHood (NeighbourName,NeighbourNumberOfDesk)
 VALUES 
 ('Meeting',20),
@@ -170,7 +163,7 @@ VALUES
 GO
 -- rollback DELETE FROM NeighbourHood;
 
---changeset HybridHavenMigrate:21 labels:InsertingDataEventsDeskBooking
+--changeset HybridHavenMigrate:18 labels:InsertingDataEventsDeskBooking
 INSERT INTO DeskBooking (EmployeeId,NeighbourId,DeskBookingDate)
 VALUES 
 (1,2,'2024-02-13'),
@@ -190,7 +183,7 @@ GO
 --  Extras
 --  <<<<<<<<<<<<<<
 
---changeset HybridHavenMigrate:22 labels:CreatingPROC
+--changeset HybridHavenMigrate:19 labels:CreatingPROC
 CREATE OR ALTER PROC PROC_InsertEmployee
 @EmployeeName VARCHAR(30),
 @EmployeeEmail VARCHAR(20)
@@ -208,7 +201,7 @@ AS
 GO
 --rollback DROP PROC IF EXISTS PROC_InsertEmployee
 
---changeset HybridHavenMigrate:23 labels:CreatingFunction
+--changeset HybridHavenMigrate:20 labels:CreatingFunction
 CREATE OR ALTER FUNCTION FUNC_TomorrowDate()
 RETURNS DATE
 AS
@@ -220,7 +213,7 @@ END
 GO
 --rollback DROP FUNCTION IF EXISTS FUNC_TomorrowDate;
 
---changeset HybridHavenMigrate:24 labels:CreatingView
+--changeset HybridHavenMigrate:21 labels:CreatingView
 CREATE OR ALTER VIEW VIEW_TommEmployees
 AS
 SELECT Employeename 
