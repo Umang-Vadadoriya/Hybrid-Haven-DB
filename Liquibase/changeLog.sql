@@ -214,3 +214,32 @@ WHERE EmployeeId IN
     WHERE DeskBookingDate = dbo.FUNC_TomorrowDate());
 GO
 --rollback DROP VIEW IF EXISTS VIEW_TommEmployees;
+
+--changeset HybridHavenMigrate:21 labels:CreatingProcedure
+
+CREATE OR ALTER PROCEDURE proc_GetAvailableNeighbourHood
+@Neighbourhoodname VARCHAR(20)
+AS
+BEGIN
+	DECLARE @OccupiedNeighbour INT
+	DECLARE @AvailableDesk INT
+
+	BEGIN TRY
+		
+		SELECT @OccupiedNeighbour = count(*) FROM DeskBooking WHERE DeskBookingDate = dbo.TomorrowDate() 
+		AND EmployeeId IN (SELECT EmployeeId 
+							FROM DeskBooking 
+							WHERE NeighbourId = (SELECT NeighbourId 
+												FROM NeighbourHood 
+												WHERE NeighbourName = @Neighbourhoodname) And DeskBookingDate = dbo.TomorrowDate())
+
+		SELECT @AvailableDesk = NeighbourNumberOfDesk - @OccupiedNeighbour FROM NeighbourHood WHERE NeighbourName = @Neighbourhoodname
+
+		PRINT @AvailableDesk
+	END TRY
+	BEGIN CATCH
+		SELECT ERROR_MESSAGE();
+	END CATCH
+END
+GO
+--rollback DROP PROC IF EXISTS proc_GetAvailableNeighbourHood
