@@ -4,6 +4,10 @@ on:
     branches: 
         - main
     paths: 'Liquibase/*'
+  pull_request: 
+    branches: 
+        - main
+    paths: 'Liquibase/*'
 
 jobs:
   test-output:
@@ -11,6 +15,30 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
+
+
+      - name: Liquibase Validate
+        uses: liquibase-github-actions/validate@v4.26.0
+        with:
+          # string
+          # Required
+          changelogFile: "Liquibase/changeLog.sql"
+          
+          # The JDBC database connection URL
+          # string
+          # Required
+          url: ${{ secrets.URL }}
+          
+          # Password to use to connect to the database
+          # string
+          # Optional
+          password: ${{ secrets.PASSWORD }}
+          
+          # Username to use to connect to the database
+          # string
+          # Optional
+          username: ${{ secrets.USERNAME }}
+          # The root changelog
 
       - name: Liquibase Migrate
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'  
