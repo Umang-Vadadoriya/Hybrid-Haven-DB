@@ -5,6 +5,7 @@ CREATE TABLE [Employee] (
   [EmployeeId] integer IDENTITY(1,1) PRIMARY KEY,
   [EmployeeName] varchar(50) NOT NULL,
   [EmployeeEmail] varchar(50) NOT NULL,
+  [EmployeeContact] varchar(12) NOT NULL,
   [EmpReportsTo] integer NOT NULL
 )
 GO
@@ -105,14 +106,14 @@ GO
 --  <<<<<<<<<<<<<<
 
 --changeset HybridHavenMigrate:15 labels:InsertingDataEmployee
-INSERT INTO Employee (EmployeeName,EmployeeEmail,EmployeeReportsTo)
+INSERT INTO Employee (EmployeeName,EmployeeEmail,EmployeeContact,EmployeeReportsTo)
 VALUES 
-('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za',0),
-('Krunal Rana', 'krunal.rana@bbd.co.za',1),
-('Dinesh Saw', 'dinesh.saw@bbd.co.za',1),
-('Nishant Taletiya', 'nishant.taletiya@bbd.co.za',2),
-('Parth Vaghela', 'parth.vaghela@bbd.co.za',2),
-('Vinayak Tiwari', 'vinayak.tiwari@bbd.co.za',5);
+('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za','9645034569',0),
+('Krunal Rana', 'krunal.rana@bbd.co.za','7854357453',1),
+('Dinesh Saw', 'dinesh.saw@bbd.co.za','8534567834',1),
+('Nishant Taletiya', 'nishant.taletiya@bbd.co.za','9053681346',2),
+('Parth Vaghela', 'parth.vaghela@bbd.co.za','8534175698',2),
+('Vinayak Tiwari', 'vinayak.tiwari@bbd.co.za','7524684689',5);
 GO
 -- rollback DELETE FROM Employee;
 
