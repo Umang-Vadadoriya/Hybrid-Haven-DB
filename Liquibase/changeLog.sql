@@ -6,7 +6,7 @@ CREATE TABLE [Employee] (
   [EmployeeName] varchar(50) NOT NULL,
   [EmployeeEmail] varchar(50) NOT NULL,
   [EmployeeContact] varchar(12) NOT NULL,
-  [EmpReportsTo] integer NOT NULL
+  [EmployeeReportsTo] integer NOT NULL
 )
 GO
 -- rollback DROP TABLE Employee;
@@ -120,17 +120,7 @@ VALUES
 GO
 -- rollback DELETE FROM Vacation;
 
---changeset HybridHavenMigrate:14 labels:InsertingDataEmployeeReportsTo
-INSERT INTO EmployeeReportsTo (EmployeeId,EmpReportsTo)
-VALUES 
-(3,1),
-(4,1),
-(5,2),
-(6,2);
-GO
--- rollback DELETE FROM EmployeeReportsTo;
-
---changeset HybridHavenMigrate:15 labels:InsertingDataEvents
+--changeset HybridHavenMigrate:14 labels:InsertingDataEvents
 INSERT INTO Events (EventName,EventDescription,EventDate)
 VALUES 
 ('Lunch','At Absolute Barbeque','2024-01-12 12:00:00'),
@@ -138,7 +128,7 @@ VALUES
 GO
 -- rollback DELETE FROM Events;
 
---changeset HybridHavenMigrate:16 labels:InsertingDataEventsEmployees
+--changeset HybridHavenMigrate:15 labels:InsertingDataEventsEmployees
 INSERT INTO EventsEmployees (EventID,EmployeeId)
 VALUES 
 (1,1),
@@ -154,7 +144,7 @@ VALUES
 GO
 -- rollback DELETE FROM EventsEmployees;
 
---changeset HybridHavenMigrate:17 labels:InsertingDataEventsNeighbourHood
+--changeset HybridHavenMigrate:16 labels:InsertingDataEventsNeighbourHood
 INSERT INTO NeighbourHood (NeighbourName,NeighbourNumberOfDesk)
 VALUES 
 ('Meeting',20),
@@ -163,7 +153,7 @@ VALUES
 GO
 -- rollback DELETE FROM NeighbourHood;
 
---changeset HybridHavenMigrate:18 labels:InsertingDataEventsDeskBooking
+--changeset HybridHavenMigrate:17 labels:InsertingDataEventsDeskBooking
 INSERT INTO DeskBooking (EmployeeId,NeighbourId,DeskBookingDate)
 VALUES 
 (1,2,'2024-02-13'),
@@ -183,7 +173,7 @@ GO
 --  Extras
 --  <<<<<<<<<<<<<<
 
---changeset HybridHavenMigrate:19 labels:CreatingPROC
+--changeset HybridHavenMigrate:18 labels:CreatingPROC
 CREATE OR ALTER PROC PROC_InsertEmployee
 @EmployeeName VARCHAR(30),
 @EmployeeEmail VARCHAR(20)
@@ -201,7 +191,7 @@ AS
 GO
 --rollback DROP PROC IF EXISTS PROC_InsertEmployee
 
---changeset HybridHavenMigrate:20 labels:CreatingFunction
+--changeset HybridHavenMigrate:19 labels:CreatingFunction
 CREATE OR ALTER FUNCTION FUNC_TomorrowDate()
 RETURNS DATE
 AS
@@ -213,7 +203,7 @@ END
 GO
 --rollback DROP FUNCTION IF EXISTS FUNC_TomorrowDate;
 
---changeset HybridHavenMigrate:21 labels:CreatingView
+--changeset HybridHavenMigrate:20 labels:CreatingView
 CREATE OR ALTER VIEW VIEW_TommEmployees
 AS
 SELECT Employeename 
