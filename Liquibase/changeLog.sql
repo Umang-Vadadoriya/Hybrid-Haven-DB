@@ -216,7 +216,6 @@ GO
 --rollback DROP VIEW IF EXISTS VIEW_TommEmployees;
 
 --changeset HybridHavenMigrate:21 labels:CreatingProcedure
-
 CREATE OR ALTER PROCEDURE proc_GetAvailableNeighbourHood
 @Neighbourhoodname VARCHAR(20)
 AS
@@ -226,14 +225,20 @@ BEGIN
 
 	BEGIN TRY
 		
-		SELECT @OccupiedNeighbour = count(*) FROM DeskBooking WHERE DeskBookingDate = dbo.TomorrowDate() 
-		AND EmployeeId IN (SELECT EmployeeId 
-							FROM DeskBooking 
-							WHERE NeighbourId = (SELECT NeighbourId 
-												FROM NeighbourHood 
-												WHERE NeighbourName = @Neighbourhoodname) And DeskBookingDate = dbo.TomorrowDate())
+		SELECT @OccupiedNeighbour = count(*) 
+    FROM DeskBooking 
+    WHERE DeskBookingDate = dbo.TomorrowDate() 
+		AND EmployeeId 
+    IN (SELECT EmployeeId 
+				FROM DeskBooking 
+				WHERE NeighbourId = 
+          (SELECT NeighbourId 
+					FROM NeighbourHood 
+					WHERE NeighbourName = @Neighbourhoodname) And DeskBookingDate = dbo.TomorrowDate())
 
-		SELECT @AvailableDesk = NeighbourNumberOfDesk - @OccupiedNeighbour FROM NeighbourHood WHERE NeighbourName = @Neighbourhoodname
+		SELECT @AvailableDesk = NeighbourNumberOfDesk - @OccupiedNeighbour 
+    FROM NeighbourHood 
+    WHERE NeighbourName = @Neighbourhoodname
 
 		PRINT @AvailableDesk
 	END TRY
@@ -243,3 +248,44 @@ BEGIN
 END
 GO
 --rollback DROP PROC IF EXISTS proc_GetAvailableNeighbourHood
+
+--changeset HybridHavenMigrate:22 labels:CreatingFunction
+CREATE OR ALTER FUNCTION GetEmployeeByNeighbourHood
+(
+	@NeiName varchar(20)
+)
+RETURNS TABLE
+AS
+RETURN(
+	SELECT EmployeeId,EmployeeName,EmployeeEmail
+	FROM Employee 
+	WHERE EmployeeId 
+  IN 
+    (SELECT EmployeeId 
+		From DeskBooking 
+		WHERE NeighbourId 
+      IN 
+        (SELECT NeighbourId 
+				FROM NeighbourHood 
+				WHERE NeighbourName = @NeiName))
+	);
+GO
+--rollback DROP FUNCTION IF EXISTS GetEmployeeByNeighbourHood;
+
+--changeset HybridHavenMigrate:23 labels:CreatingFunction
+CREATE OR ALTER FUNCTION Func_GetEmployeeReport
+(
+	@startDate DATE,@endDate DATE
+)
+RETURNS TABLE
+AS
+RETURN(
+	SELECT e.EmployeeId AS EmployeeId,e.EmployeeName,count(d.EmployeeId) AS Attend 
+	FROM DeskBooking d 
+	INNER JOIN Employee e 
+	ON d.EmployeeId = e.EmployeeId 
+	WHERE DeskBookingDate BETWEEN @startDate and @endDate 
+	group by e.EmployeeName,e.EmployeeId
+);
+GO
+--rollback DROP FUNCTION IF EXISTS Func_GetEmployeeReport;
