@@ -64,4 +64,7 @@ terraform apply
 
 ![ERD](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160090850/0c284f3e-7e95-4291-a66c-389288dc3b92)
 
+## Documentation
+
 - Confluence [Visit](https://krunalsite.atlassian.net/wiki/spaces/HHP/pages/393232/HybridHaven)
+- Jira [Visit](https://krunalsite.atlassian.net/jira/software/projects/HH/boards/1)
