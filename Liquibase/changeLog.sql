@@ -307,7 +307,15 @@ CREATE TABLE [EmployeeContact] (
 GO
 -- rollback DROP TABLE EmployeeContact;
 
---changeset HybridHavenMigrate:26 labels:InsertingDataEmployeeContact
+--changeset HybridHavenMigrate:26 labels:FK_Employee_Empid_EmpContact
+ALTER TABLE [EmployeeContact] 
+ADD CONSTRAINT [FK_Employee_Empid_EmpContact] 
+FOREIGN KEY ([EmployeeId]) 
+REFERENCES [Employee] ([EmployeeId])
+GO
+-- rollback ALTER TABLE EmployeeContact DROP CONSTRAINT FK_Employee_Empid_EmpContact;
+
+--changeset HybridHavenMigrate:27 labels:InsertingDataEmployeeContact
 INSERT INTO EmployeeContact (EmployeeId,EmployeeEmail,EmployeeContact) 
 values 
 (1,'umang.vadadoriya@bbd.co.za','9645034569'),
