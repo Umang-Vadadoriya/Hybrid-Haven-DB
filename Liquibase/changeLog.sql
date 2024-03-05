@@ -289,3 +289,32 @@ RETURN(
 );
 GO
 --rollback DROP FUNCTION IF EXISTS Func_GetEmployeeReport;
+
+--changeset HybridHavenMigrate:24 labels:RemovingColumnsFromEmployee
+ALTER TABLE Employee
+DROP COLUMN EmployeeEmail;
+
+ALTER TABLE Employee
+DROP COLUMN EmployeeContact;
+
+--changeset HybridHavenMigrate:25 labels:CreatingTableEmployeeContact
+CREATE TABLE [EmployeeContact] (
+  [EmployeeContactId] integer PRIMARY KEY IDENTITY(1, 1),
+  [EmployeeId] integer NOT NULL,
+  [EmployeeEmail] varchar(50) NOT NULL,
+  [EmployeeContact] varchar(13) NOT NULL
+)
+GO
+-- rollback DROP TABLE EmployeeContact;
+
+--changeset HybridHavenMigrate:26 labels:InsertingDataEmployeeContact
+INSERT INTO EmployeeContact (EmployeeId,EmployeeEmail,EmployeeContact) 
+values 
+(1,'umang.vadadoriya@bbd.co.za','9645034569'),
+(2,'krunal.rana@bbd.co.za','7854357453'),
+(3,'dinesh.saw@bbd.co.za','8534567834'),
+(4,'nishant.taletiya@bbd.co.za','9053681346'),
+(5,'parth.vaghela@bbd.co.za','8534175698'),
+(6,'vinayak.tiwari@bbd.co.za','7524684689');
+GO
+-- rollback DELETE FROM EmployeeContact;
