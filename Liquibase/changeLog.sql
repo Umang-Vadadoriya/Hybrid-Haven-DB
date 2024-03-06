@@ -326,3 +326,7 @@ values
 (6,'vinayak.tiwari@bbd.co.za','7524684689');
 GO
 -- rollback DELETE FROM EmployeeContact;
+
+--changeset HybridHavenMigrate:28 labels:AddingColumn And Primarykey
+ALTER TABLE EventsEmployees
+ADD EventEmployeeId INT IDENTITY(1,1) PRIMARY KEY;
