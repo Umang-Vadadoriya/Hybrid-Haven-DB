@@ -330,3 +330,7 @@ GO
 --changeset HybridHavenMigrate:28 labels:AddingColumn And Primarykey
 ALTER TABLE EventsEmployees
 ADD EventEmployeeId INT IDENTITY(1,1) PRIMARY KEY;
+
+--changeset HybridHavenMigrate:29 labels:Altercolumn EventDate
+ALTER TABLE Events
+ALTER column EventDate DATE;
