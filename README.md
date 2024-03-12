@@ -62,7 +62,7 @@ terraform apply
 ```
 ### Diagram
 
-![ERD](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160090850/0c284f3e-7e95-4291-a66c-389288dc3b92)
+![image](https://github.com/Umang-Vadadoriya-BBD/Hybrid-Haven-DB/assets/160098615/77835749-a22f-4935-ad13-4de0a3bca0e1)
 
 ## Documentation
 
