@@ -1,49 +1,69 @@
-Table "Employee" {
-  "EmployeeId" integer [pk]
-  "EmployeeName" varchar2(50) [not null]
-  "EmployeeEmail" varchar2(50) [not null]
-  "EmployeeContact" varchar2(12) [not null]
-  "EmpReportsTo" integer [not null]
-}
+CREATE TABLE [Employee] (
+  [EmployeeId] integer PRIMARY KEY IDENTITY(1, 1),
+  [EmployeeName] varchar(50) NOT NULL,
+  [EmployeeReportsTo] integer NOT NULL
+)
+GO
 
-Table "DeskBooking" {
-  "DeskBookingId" integer [pk]
-  "EmployeeId" integer [not null]
-  "NeighbourId" integer [not null]
-  "DeskBookingDate" date [not null]
-}
+CREATE TABLE [EmployeeContact] (
+  [EmployeeContactId] integer PRIMARY KEY IDENTITY(1, 1),
+  [EmployeeId] integer NOT NULL,
+  [EmployeeEmail] varchar(50) NOT NULL,
+  [EmployeeContact] varchar(13) NOT NULL
+)
+GO
 
-Table "Vacation" {
-  "VacationId" integer [pk]
-  "EmployeeId" integer [not null]
-  "VacationStartDate" date [not null]
-  "VacationEndDate" date [not null]
-}
+CREATE TABLE [DeskBooking] (
+  [DeskBookingId] integer PRIMARY KEY IDENTITY(1, 1),
+  [EmployeeId] integer NOT NULL,
+  [NeighbourId] integer NOT NULL,
+  [DeskBookingDate] date NOT NULL
+)
+GO
 
-Table "Events" {
-  "EventID" integer [pk]
-  "EventName" varchar2(50) [not null]
-  "EventDescription" varchar2(300)
-  "EventDate" datetime [not null]
-}
+CREATE TABLE [Vacation] (
+  [VacationId] integer PRIMARY KEY IDENTITY(1, 1),
+  [EmployeeId] integer NOT NULL,
+  [VacationStartDate] date NOT NULL,
+  [VacationEndDate] date NOT NULL
+)
+GO
 
-Table "NeighbourHood" {
-  "NeighbourId" integer [pk]
-  "NeighbourName" varchar2(30) [not null]
-  "NeighbourNumberOfDesk" integer [not null]
-}
+CREATE TABLE [Events] (
+  [EventID] integer PRIMARY KEY IDENTITY(1, 1),
+  [EventName] varchar(50) NOT NULL,
+  [EventDescription] varchar(300),
+  [EventDate] date NOT NULL
+)
+GO
 
-Table "EventsEmployees" {
-  "EventId" integer [not null]
-  "EmployeeId" integer [not null]
-}
+CREATE TABLE [NeighbourHood] (
+  [NeighbourId] integer PRIMARY KEY IDENTITY(1, 1),
+  [NeighbourName] varchar(30) NOT NULL,
+  [NeighbourNumberOfDesk] integer NOT NULL
+)
+GO
 
-Ref:"Employee"."EmployeeId" < "DeskBooking"."EmployeeId"
+CREATE TABLE [EventsEmployees] (
+  [EventId] integer NOT NULL,
+  [EmployeeId] integer NOT NULL
+)
+GO
 
-Ref:"Employee"."EmployeeId" < "Vacation"."EmployeeId"
+ALTER TABLE [DeskBooking] ADD CONSTRAINT [FK_Deskbook_Empid_Empid] FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId]) ON UPDATE CASCADE
+GO
 
-Ref:"Employee"."EmployeeId" < "EventsEmployees"."EmployeeId"
+ALTER TABLE [Vacation] ADD CONSTRAINT [FK_Vacation_Empid_Empid] FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId]) ON UPDATE CASCADE
+GO
 
-Ref:"Events"."EventID" < "EventsEmployees"."EventId"
+ALTER TABLE [EventsEmployees] ADD CONSTRAINT [FK_EventsEmp_Empid_Empid] FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId]) ON UPDATE CASCADE
+GO
 
-Ref:"NeighbourHood"."NeighbourId" < "DeskBooking"."NeighbourId"
+ALTER TABLE [EventsEmployees] ADD CONSTRAINT [FK_EventsEmp_Eventid_Eventid] FOREIGN KEY ([EventId]) REFERENCES [Events] ([EventID]) ON UPDATE CASCADE
+GO
+
+ALTER TABLE [DeskBooking] ADD CONSTRAINT [FK_NeighbourHood_Neighid_Neighid] FOREIGN KEY ([NeighbourId]) REFERENCES [NeighbourHood] ([NeighbourId]) ON UPDATE CASCADE
+GO
+
+ALTER TABLE [EmployeeContact] ADD FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
+GO
