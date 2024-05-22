@@ -98,27 +98,27 @@ GO
 --  Insert Queries
 --  <<<<<<<<<<<<<<
 
---changeset HybridHavenMigrate:12 labels:InsertingDataEmployee
-INSERT INTO Employee (EmployeeName,EmployeeEmail,EmployeeContact,EmployeeReportsTo)
-VALUES 
-('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za','9645034569',0),
-('Krunal Rana', 'krunal.rana@bbd.co.za','7854357453',1),
-('Dinesh Saw', 'dinesh.saw@bbd.co.za','8534567834',1),
-('Nishant Taletiya', 'nishant.taletiya@bbd.co.za','9053681346',2),
-('Parth Vaghela', 'parth.vaghela@bbd.co.za','8534175698',2),
-('Vinayak Tiwari', 'vinayak.tiwari@bbd.co.za','7524684689',5);
-GO
--- rollback DELETE FROM Employee;
+-- --changeset HybridHavenMigrate:12 labels:InsertingDataEmployee
+-- INSERT INTO Employee (EmployeeName,EmployeeEmail,EmployeeContact,EmployeeReportsTo)
+-- VALUES 
+-- ('Umang Vadadoriya', 'umang.vadadoriya@bbd.co.za','9645034569',0),
+-- ('Krunal Rana', 'krunal.rana@bbd.co.za','7854357453',1),
+-- ('Dinesh Saw', 'dinesh.saw@bbd.co.za','8534567834',1),
+-- ('Nishant Taletiya', 'nishant.taletiya@bbd.co.za','9053681346',2),
+-- ('Parth Vaghela', 'parth.vaghela@bbd.co.za','8534175698',2),
+-- ('Vinayak Tiwari', 'vinayak.tiwari@bbd.co.za','7524684689',5);
+-- GO
+-- -- rollback DELETE FROM Employee;
 
---changeset HybridHavenMigrate:13 labels:InsertingDataVacation
-INSERT INTO Vacation (EmployeeId,VacationStartDate,VacationEndDate)
-VALUES 
-(5,'2023-02-15','2023-02-17'),
-(5,'2023-02-25','2023-02-27'),
-(6,'2023-02-15','2023-02-17'),
-(6,'2023-02-25','2023-02-27');
-GO
--- rollback DELETE FROM Vacation;
+-- --changeset HybridHavenMigrate:13 labels:InsertingDataVacation
+-- INSERT INTO Vacation (EmployeeId,VacationStartDate,VacationEndDate)
+-- VALUES 
+-- (5,'2023-02-15','2023-02-17'),
+-- (5,'2023-02-25','2023-02-27'),
+-- (6,'2023-02-15','2023-02-17'),
+-- (6,'2023-02-25','2023-02-27');
+-- GO
+-- -- rollback DELETE FROM Vacation;
 
 --changeset HybridHavenMigrate:14 labels:InsertingDataEvents
 INSERT INTO Events (EventName,EventDescription,EventDate)
@@ -128,45 +128,45 @@ VALUES
 GO
 -- rollback DELETE FROM Events;
 
---changeset HybridHavenMigrate:15 labels:InsertingDataEventsEmployees
-INSERT INTO EventsEmployees (EventID,EmployeeId)
-VALUES 
-(1,1),
-(1,2),
-(1,3),
-(1,4),
-(1,6),
-(2,1),
-(2,2),
-(2,3),
-(2,4),
-(2,5);
-GO
--- rollback DELETE FROM EventsEmployees;
+-- --changeset HybridHavenMigrate:15 labels:InsertingDataEventsEmployees
+-- INSERT INTO EventsEmployees (EventID,EmployeeId)
+-- VALUES 
+-- (1,1),
+-- (1,2),
+-- (1,3),
+-- (1,4),
+-- (1,6),
+-- (2,1),
+-- (2,2),
+-- (2,3),
+-- (2,4),
+-- (2,5);
+-- GO
+-- -- rollback DELETE FROM EventsEmployees;
 
 --changeset HybridHavenMigrate:16 labels:InsertingDataEventsNeighbourHood
 INSERT INTO NeighbourHood (NeighbourName,NeighbourNumberOfDesk)
 VALUES 
-('Meeting',20),
+('Quite Space',20),
 ('Hot Desk',20),
 ('Collab',32);
 GO
 -- rollback DELETE FROM NeighbourHood;
 
---changeset HybridHavenMigrate:17 labels:InsertingDataEventsDeskBooking
-INSERT INTO DeskBooking (EmployeeId,NeighbourId,DeskBookingDate)
-VALUES 
-(1,2,'2024-02-13'),
-(1,3,'2024-02-14'),
-(1,1,'2024-02-15'),
-(2,2,'2024-02-13'),
-(2,3,'2024-02-14'),
-(2,1,'2024-02-15'),
-(4,2,'2024-02-13'),
-(4,3,'2024-02-14'),
-(4,1,'2024-02-15');
-GO
--- rollback DELETE FROM DeskBooking;
+-- --changeset HybridHavenMigrate:17 labels:InsertingDataEventsDeskBooking
+-- INSERT INTO DeskBooking (EmployeeId,NeighbourId,DeskBookingDate)
+-- VALUES 
+-- (1,2,'2024-02-13'),
+-- (1,3,'2024-02-14'),
+-- (1,1,'2024-02-15'),
+-- (2,2,'2024-02-13'),
+-- (2,3,'2024-02-14'),
+-- (2,1,'2024-02-15'),
+-- (4,2,'2024-02-13'),
+-- (4,3,'2024-02-14'),
+-- (4,1,'2024-02-15');
+-- GO
+-- -- rollback DELETE FROM DeskBooking;
 
 
 --  >>>>>>>>>>>>>>
@@ -315,17 +315,17 @@ REFERENCES [Employee] ([EmployeeId])
 GO
 -- rollback ALTER TABLE EmployeeContact DROP CONSTRAINT FK_Employee_Empid_EmpContact;
 
---changeset HybridHavenMigrate:27 labels:InsertingDataEmployeeContact
-INSERT INTO EmployeeContact (EmployeeId,EmployeeEmail,EmployeeContact) 
-values 
-(1,'umang.vadadoriya@bbd.co.za','9645034569'),
-(2,'krunal.rana@bbd.co.za','7854357453'),
-(3,'dinesh.saw@bbd.co.za','8534567834'),
-(4,'nishant.taletiya@bbd.co.za','9053681346'),
-(5,'parth.vaghela@bbd.co.za','8534175698'),
-(6,'vinayak.tiwari@bbd.co.za','7524684689');
-GO
--- rollback DELETE FROM EmployeeContact;
+-- --changeset HybridHavenMigrate:27 labels:InsertingDataEmployeeContact
+-- INSERT INTO EmployeeContact (EmployeeId,EmployeeEmail,EmployeeContact) 
+-- values 
+-- (1,'umang.vadadoriya@bbd.co.za','9645034569'),
+-- (2,'krunal.rana@bbd.co.za','7854357453'),
+-- (3,'dinesh.saw@bbd.co.za','8534567834'),
+-- (4,'nishant.taletiya@bbd.co.za','9053681346'),
+-- (5,'parth.vaghela@bbd.co.za','8534175698'),
+-- (6,'vinayak.tiwari@bbd.co.za','7524684689');
+-- GO
+-- -- rollback DELETE FROM EmployeeContact;
 
 --changeset HybridHavenMigrate:28 labels:AddingColumn And Primarykey
 ALTER TABLE EventsEmployees
